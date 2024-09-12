@@ -33,7 +33,7 @@ function Login() {
   async function handleSubmit(e) {
     try {
       e.preventDefault(); // Prevent form submission reloading
-      console.log(details);
+      // console.log(details);
       if(!details.email || !details.password){
         return toast({
           title: "Please fill all the fields",

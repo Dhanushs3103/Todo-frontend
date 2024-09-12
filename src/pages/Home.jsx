@@ -1,11 +1,13 @@
 //packages
 import { Box, Container,Text,Button,Image } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 //Local imports
 import Navbar from "../components/Navbar";
 import "../App.css"
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar />
@@ -23,6 +25,7 @@ function Home() {
             fontSize={"20px"}
             mt={3}
             _hover={{ bg: "blue.600" }}
+            onClick={() => navigate("/todos")}
           >
             Get Started
           </Button>

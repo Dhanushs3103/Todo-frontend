@@ -48,7 +48,7 @@ function Register() {
     }
 
     try {
-      console.log(details);
+      // console.log(details);
 
       // Making the post request
       let res = await axios({

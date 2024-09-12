@@ -9,10 +9,11 @@ import {
   Button,
   Text,
   useToast,
+  textDecoration,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContextProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Base URL
 let URL = `https://todo-backend-zf7n.onrender.com`;
@@ -168,6 +169,9 @@ function Register() {
                 <option value="female">Female</option>
               </Select>
             </FormControl>
+            <span style={{color:"blue",textDecoration:"underline",marginBottom:"10px"}}>
+              <Link to="/login">Already have an account?</Link>
+            </span>
             <Button type="submit" colorScheme="teal" variant="solid">
               Register
             </Button>

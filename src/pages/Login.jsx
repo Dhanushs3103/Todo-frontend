@@ -11,7 +11,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 //Base URL
@@ -153,6 +153,15 @@ function Login() {
                 placeholder="Enter password"
               />
             </FormControl>
+            <span
+              style={{
+                color: "blue",
+                textDecoration: "underline",
+                marginBottom: "10px",
+              }}
+            >
+            <Link to="/register">{"Don't"} have an account?</Link>
+            </span>
             <Button type="submit" colorScheme="teal" variant="solid">
               Login
             </Button>

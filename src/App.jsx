@@ -2,12 +2,15 @@
 import './App.css'
 
 //local imports
+import PagesRoutes from "./components/PagesRoutes";
+
 
 function App() {
   
   return (
     <>
-      hello
+      {/* Pages routes */}
+      <PagesRoutes />
     </>
   )
 }

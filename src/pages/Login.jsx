@@ -34,7 +34,7 @@ function Login() {
     try {
       e.preventDefault(); // Prevent form submission reloading
       // console.log(details);
-      if(!details.email || !details.password){
+      if (!details.email || !details.password) {
         return toast({
           title: "Please fill all the fields",
           status: "warning",
@@ -48,6 +48,12 @@ function Login() {
         method: "POST",
         url: `${URL}/api/auth/login`,
         data: details,
+      });
+
+      // Resetting the form in case of any other scenario
+      setDetails({
+        email: "",
+        password: "",
       });
 
       // Checking if user exists
@@ -94,15 +100,9 @@ function Login() {
           isClosable: true,
         });
         //setting the login state
-        handleLogin()
+        handleLogin();
         return navigate("/todos"); // Redirect to todos after successful login
       }
-
-      // Resetting the form in case of any other scenario
-      setDetails({
-        email: "",
-        password: "",
-      });
     } catch (error) {
       console.log(error);
       toast({

@@ -22,7 +22,7 @@ Welcome to **Todoiest**, a full-stack todo application where you can manage your
 - 📱 **Full Responsive Design**
 
 ## 🌐 Live Demo
-Check out the deployed app here: [Todoiest App](https://todoiest-app.netlify.app/)
+Check out the deployed app here: [Todoiest App](https://todoeist-application.netlify.app/)
 
 ## 💻 Tech Stack
 

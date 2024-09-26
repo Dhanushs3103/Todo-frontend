@@ -42,7 +42,7 @@ function Login() {
         return toast({
           title: "Please fill all the fields",
           status: "warning",
-          duration: 3000,
+          duration: 2000,
           isClosable: true,
         });
       }
@@ -71,7 +71,7 @@ function Login() {
         return toast({
           title: "User not found",
           status: "warning",
-          duration: 3000,
+          duration: 2000,
           isClosable: true,
         });
       }
@@ -87,7 +87,7 @@ function Login() {
         return toast({
           title: "Invalid credentials",
           status: "error",
-          duration: 3000,
+          duration: 2000,
           isClosable: true,
         });
       }
@@ -103,7 +103,7 @@ function Login() {
         toast({
           title: "Login successful",
           status: "success",
-          duration: 3000,
+          duration: 2000,
           isClosable: true,
         });
         //setting the login state
@@ -119,20 +119,28 @@ function Login() {
         title: "An error occurred",
         description: error.response?.data?.message || "Please try again later",
         status: "error",
-        duration: 3000,
+        duration: 2000,
         isClosable: true,
       });
     }
   }
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
       <Box
         w={{ base: "90%", md: "60%", lg: "40%" }}
         bg={"white"}
         p={5}
         mx="auto"
-        mt={40}
+        mt={1}
         borderRadius={"10px"}
         boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
       >
@@ -193,7 +201,10 @@ function Login() {
           </Flex>
         </form>
       </Box>
-    </>
+      <Button colorScheme="teal" mt={3} size="lg" onClick={() => navigate("/")}>
+        Home Page
+      </Button>
+    </div>
   );
 }
 

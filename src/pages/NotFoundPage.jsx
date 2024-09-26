@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFoundPage() {
+  const navigate = useNavigate();
   return (
     <>
     <div style={{display:"flex",justifyContent:"center",alignItems:"center",marginTop:"100px"}}>
@@ -12,8 +14,8 @@ export default function NotFoundPage() {
       />
     </div>
    <div style={{display:"flex",justifyContent:"center",alignItems:"center",marginTop:"10px"}}>
-    <Button colorScheme='teal' size='lg' onClick={() => window.location.href = "/"}>
-      Go Back 
+    <Button colorScheme='teal' size='lg' onClick={() => navigate("/")}>
+      Home Page
     </Button>
    </div>
     </>

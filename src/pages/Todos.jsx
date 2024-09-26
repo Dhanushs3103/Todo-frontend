@@ -44,7 +44,7 @@ function Todos() {
     toast({
       title: "Todo added.",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };
@@ -65,7 +65,7 @@ function Todos() {
     toast({
       title: "Todo updated.",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };
@@ -75,7 +75,7 @@ function Todos() {
     toast({
       title: "Todo deleted.",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };

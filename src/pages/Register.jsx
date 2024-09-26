@@ -71,7 +71,7 @@ function Register() {
            title: "User already exists with this email",
            description: "please login",
            status: "warning",
-           duration: 3000,
+           duration: 2000,
            isClosable: true,
          });
       }
@@ -92,7 +92,7 @@ function Register() {
         toast({
           title: "Registered successfully",
           status: "success",
-          duration: 3000,
+          duration: 2000,
           isClosable: true,
         });
        //navigate to todos
@@ -111,14 +111,14 @@ function Register() {
        toast({
          title: error.response.data.message,
          status: "error",
-         duration: 3000,
+         duration: 2000,
          isClosable: true,
        })
     }
   }
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
       <Box
         w={{ base: "90%", md: "70%", lg: "50%" }}
         p={4}
@@ -209,6 +209,9 @@ function Register() {
           </Flex>
         </form>
       </Box>
+      <Button colorScheme="teal" mt={3} size="lg" onClick={() => navigate("/")}>
+        Home Page
+      </Button>
     </div>
   );
 }

@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 //Base URL
-let URL = `https://todo-backend-zf7n.onrender.com`;
+let URL = `https://todo-backend-hpmy.onrender.com`;
 
 //local imports
 import { AuthContext } from "../contexts/AuthContextProvider";

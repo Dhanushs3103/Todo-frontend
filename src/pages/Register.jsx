@@ -17,7 +17,7 @@ import { AuthContext } from "../contexts/AuthContextProvider";
 import { Link, useNavigate } from "react-router-dom";
 
 // Base URL
-let URL = `https://todo-backend-zf7n.onrender.com`;
+let URL = `https://todo-backend-hpmy.onrender.com`;
 
 function Register() {
   let toast = useToast();

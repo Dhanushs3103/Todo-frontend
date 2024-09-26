@@ -1,5 +1,6 @@
 //packages
 import React, { useState } from "react";
+import { Spinner } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -23,6 +24,7 @@ import { AuthContext } from "../contexts/AuthContextProvider";
 
 function Login() {
   let navigate = useNavigate();
+  let [loading,setLoading] = useState(false);
   let { handleLogin } = useContext(AuthContext);
   let toast = useToast();
   let [details, setDetails] = useState({
@@ -31,10 +33,12 @@ function Login() {
   });
 
   async function handleSubmit(e) {
+    setLoading(true);
     try {
       e.preventDefault(); // Prevent form submission reloading
       // console.log(details);
       if (!details.email || !details.password) {
+        setLoading(false);
         return toast({
           title: "Please fill all the fields",
           status: "warning",
@@ -58,6 +62,7 @@ function Login() {
 
       // Checking if user exists
       if (res.data.message === "User not found") {
+        setLoading(false);
         // Resetting the form
         setDetails({
           email: "",
@@ -73,10 +78,11 @@ function Login() {
 
       // Checking if password is correct
       if (res.data.message === "Invalid credentials") {
+        setLoading(false);
         // Resetting the form
         setDetails({
-          email: "",
           password: "",
+          email: "",
         });
         return toast({
           title: "Invalid credentials",
@@ -88,6 +94,7 @@ function Login() {
 
       // Checking if user is logged in successfully
       if (res.data.message === "Login successful") {
+        setLoading(false);
         // Resetting the form
         setDetails({
           email: "",
@@ -101,10 +108,13 @@ function Login() {
         });
         //setting the login state
         handleLogin();
-        return navigate("/todos"); // Redirect to todos after successful login
+        setTimeout(()=>{
+          navigate("/todos");
+        },1000)
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast({
         title: "An error occurred",
         description: error.response?.data?.message || "Please try again later",
@@ -160,10 +170,25 @@ function Login() {
                 marginBottom: "10px",
               }}
             >
-            <Link to="/register">{"Don't"} have an account?</Link>
+              <Link to="/register">{"Don't"} have an account?</Link>
             </span>
-            <Button type="submit" colorScheme="teal" variant="solid">
-              Login
+            <Button
+              type="submit"
+              colorScheme="teal"
+              variant="solid"
+              isDisabled={loading} // Disabling the button when loading
+            >
+              {loading ? (
+                <Spinner
+                  thickness="2px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="md"
+                />
+              ) : (
+                "Login"
+              )}
             </Button>
           </Flex>
         </form>

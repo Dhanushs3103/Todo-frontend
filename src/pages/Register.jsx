@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Spinner } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -22,6 +23,7 @@ function Register() {
   let toast = useToast();
   let navigate = useNavigate();
   let { handleLogin } = useContext(AuthContext);
+  let [loading, setLoading] = useState(false);
   let [details, setDetails] = useState({
     email: "",
     password: "",
@@ -30,8 +32,8 @@ function Register() {
   });
 
   async function handleSubmit(e) {
-    e.preventDefault(); // Call preventDefault only once
-
+    e.preventDefault(); 
+    setLoading(true)
     // Validate fields
     if (
       !details.email ||
@@ -39,6 +41,7 @@ function Register() {
       !details.userName ||
       !details.gender
     ) {
+      setLoading(false)
       return toast({
         title: "Please fill all the fields",
         status: "warning",
@@ -48,8 +51,6 @@ function Register() {
     }
 
     try {
-      // console.log(details);
-
       // Making the post request
       let res = await axios({
         method: "POST",
@@ -57,9 +58,8 @@ function Register() {
         data: details,
       });
 
-      console.log(res);
-
       if(res.data.message === "User already exists"){
+        setLoading(false)
          setDetails({
            email: "",
            password: "",
@@ -78,6 +78,7 @@ function Register() {
 
       // Check for successful registration
       if (res.status === 201) {
+        setLoading(false);
         // Reset form
         setDetails({
           email: "",
@@ -95,9 +96,18 @@ function Register() {
           isClosable: true,
         });
        //navigate to todos
-        navigate("/todos");
+       setTimeout(()=>{
+        navigate('/todos')
+       },1000)
       }
     } catch (error) {
+      setLoading(false)
+      setDetails({
+          email: "",
+          password: "",
+          userName: "",
+          gender: "",
+        });
        toast({
          title: error.response.data.message,
          status: "error",
@@ -169,11 +179,32 @@ function Register() {
                 <option value="female">Female</option>
               </Select>
             </FormControl>
-            <span style={{color:"blue",textDecoration:"underline",marginBottom:"10px"}}>
+            <span
+              style={{
+                color: "blue",
+                textDecoration: "underline",
+                marginBottom: "10px",
+              }}
+            >
               <Link to="/login">Already have an account?</Link>
             </span>
-            <Button type="submit" colorScheme="teal" variant="solid">
-              Register
+            <Button
+              type="submit"
+              colorScheme="teal"
+              variant="solid"
+              isDisabled={loading} // Disable the button when loading
+            >
+              {loading ? (
+                <Spinner
+                  thickness="2px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="md"
+                />
+              ) : (
+                "Register"
+              )}
             </Button>
           </Flex>
         </form>
